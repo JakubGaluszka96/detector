@@ -15,7 +15,10 @@
    version="1.1"
    id="svg8"
    inkscape:version="0.92.5 (2060ec1f9f, 2020-04-08)"
-   sodipodi:docname="image.svg">
+   sodipodi:docname="image.svg"
+   inkscape:export-filename="/home/jakub/detector/datasets/train/images/image6.png"
+   inkscape:export-xdpi="54"
+   inkscape:export-ydpi="54">
   <defs
      id="defs2" />
   <sodipodi:namedview
@@ -25,9 +28,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.98994949"
-     inkscape:cx="339.68012"
-     inkscape:cy="854.45094"
+     inkscape:zoom="0.175"
+     inkscape:cx="-467.24918"
+     inkscape:cy="-17.274861"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -44,7 +47,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -54,33 +57,53 @@
      id="layer1">
     <circle
        id="path3713"
-       cx="47.306705"
-       cy="92.806084"
-       r="15.501633"
-       style="stroke-width:0.16863552" />
+       cx="153.14006"
+       cy="176.71681"
+       r="31.376633"
+       style="stroke-width:0.34133273" />
     <circle
        id="path3715"
-       cx="95.147957"
-       cy="129.42201"
-       r="8.8198938"
-       style="stroke-width:0.26458332" />
+       cx="266.74911"
+       cy="237.52321"
+       r="23.182989"
+       style="stroke-width:0.69545418"
+       inkscape:export-filename="/home/jakub/detector/datasets/train/images/image12.png"
+       inkscape:export-xdpi="54"
+       inkscape:export-ydpi="54" />
     <circle
        id="path3717"
-       cx="126.15121"
-       cy="43.361217"
-       r="4.0090427"
-       style="stroke-width:0.26458332" />
+       cx="192.67502"
+       cy="103.08146"
+       r="29.711424"
+       style="stroke-width:1.96085393" />
     <circle
        id="path3721"
-       cx="93.277069"
-       cy="174.59055"
-       r="17.639788"
-       style="stroke-width:0.26458332" />
+       cx="84.961578"
+       cy="222.21553"
+       r="34.270741"
+       style="stroke-width:0.51403487" />
     <circle
        id="path3727"
-       cx="54.790253"
-       cy="225.63904"
-       r="28.063299"
-       style="stroke-width:0.26458332" />
+       cx="227.90334"
+       cy="170.45451"
+       r="22.01568"
+       style="stroke-width:0.20756581" />
+    <rect
+       style="stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none;fill:none"
+       id="rect856"
+       width="640"
+       height="640"
+       x="29.666916"
+       y="18.237883" />
+    <rect
+       style="fill:none;stroke:#000000;stroke-width:0.04700535;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect858"
+       width="300.83423"
+       height="300.83423"
+       x="6.3879714"
+       y="2.7097518"
+       inkscape:export-filename="/home/jakub/detector/datasets/train/images/image15.png"
+       inkscape:export-xdpi="54.734009"
+       inkscape:export-ydpi="54.734009" />
   </g>
 </svg>
