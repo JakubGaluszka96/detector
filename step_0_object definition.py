@@ -5,20 +5,24 @@ import blobconverter
 import cv2
 import depthai
 import numpy as np
+import uuid
+import os
 
 background = None
 MAX_FRAMES = 1000
 THRESH = 60
 ASSIGN_VALUE = 255
 SIZE = (384,384)
+HOME=os.getcwd()
+PATH=f"{HOME}/datasets/train"
 
-def make_yolo_label(cls, x, y, w, h, size):
+
+def make_yolo_label(x, y, w, h, size):
     center_x = (x+w/2)/size[0]
     center_y = (y+h/2)/size[1]
     yolo_w=w/size[0]
     yolo_h=h/size[1]
-    print(cls, center_x, center_y, yolo_w, yolo_h)
-    return None
+    return center_x, center_y, yolo_w, yolo_h
 
 # Pipeline tells DepthAI what operations to perform when running - you define all of the resources used and flows here
 pipeline = depthai.Pipeline()
@@ -72,13 +76,18 @@ with depthai.Device(pipeline) as device:
             # Mask thresholding
             ret, motion_mask = cv2.threshold(diff, THRESH, ASSIGN_VALUE, cv2.THRESH_BINARY)
             (x, y, w, h) = cv2.boundingRect(motion_mask)
-            frame = cv2.rectangle(frame, (x,y), (x+w, y+h), (255,0,0), 1)
+            frame_gray = cv2.rectangle(frame_gray, (x,y), (x+w, y+h), (255,0,0), 1)
             cv2.imshow("motion", motion_mask)
            
             # at any time, you can press "w" to capture an image 
         if cv2.waitKey(2) == ord('w'):
-            value = input("Wybierz klasę obiektu:\n")
-            make_yolo_label(value, x, y, w, h, SIZE)
+            cls = input("Wybierz klasę obiektu:\n")
+            center_x, center_y, yolo_w, yolo_h = make_yolo_label(x, y, w, h, SIZE)
+            name=uuid.uuid4().hex
+            cv2.imwrite(os.path.join(PATH, "images/" , name+'.jpg'), frame)
+            f= open(os.path.join(PATH, "labels/" , name+'.txt'),"w")
+            f.write("{} {} {} {} {}".format(str(cls), str(center_x), str(center_y), str(yolo_w), str(yolo_h)))
+            f.close
 
         # at any time, you can press "q" and exit the main loop, therefore exiting the program itself
         if cv2.waitKey(1) == ord('q'):
