@@ -3,5 +3,6 @@ path: /home/jakub/detector/datasets/train  # dataset root dir
 train: images # train images (relative to 'path')
 val: images  # val images (relative to 'path')
 
-names:
-  0: dot
+nc: 5
+
+names: ['t-0.2', 't-0.5', 't-1.0', 't-2.0', 't-3.0']

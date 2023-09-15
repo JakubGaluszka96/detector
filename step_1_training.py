@@ -5,7 +5,7 @@ from ultralytics import YOLO
 model = YOLO('yolov8n.pt')  # load a pretrained model (recommended for training)
 
 # Use the model
-results = model.train(data='config.yaml', epochs=50, imgsz=384)  # train the model
+results = model.train(data='config.yaml', epochs=100, imgsz=384)  # train the model
 results = model.val()  # evaluate model performance on the validation set
 # results = model('https://ultralytics.com/images/bus.jpg')  # predict on an image
 results = model.export(format='openvino', dynamic=True, half=False, imgsz=384)  # export the model to ONNX format

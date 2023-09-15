@@ -10,7 +10,7 @@ import os
 
 background = None
 MAX_FRAMES = 1000
-THRESH = 60
+THRESH = 30
 ASSIGN_VALUE = 255
 SIZE = (384,384)
 HOME=os.getcwd()
@@ -76,7 +76,7 @@ with depthai.Device(pipeline) as device:
             # Mask thresholding
             ret, motion_mask = cv2.threshold(diff, THRESH, ASSIGN_VALUE, cv2.THRESH_BINARY)
             (x, y, w, h) = cv2.boundingRect(motion_mask)
-            frame_gray = cv2.rectangle(frame_gray, (x,y), (x+w, y+h), (255,0,0), 1)
+            motion_mask = cv2.rectangle(motion_mask, (x,y), (x+w, y+h), (255,0,0), 1)
             cv2.imshow("motion", motion_mask)
            
             # at any time, you can press "w" to capture an image 
