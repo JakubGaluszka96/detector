@@ -1,7 +1,6 @@
 # first, import all necessary modules
 from pathlib import Path
 
-import blobconverter
 import cv2
 import depthai
 import numpy as np
@@ -12,7 +11,7 @@ background = None
 MAX_FRAMES = 1000
 THRESH = 30
 ASSIGN_VALUE = 255
-SIZE = (384,384)
+SIZE = (640,640)
 HOME=os.getcwd()
 PATH=f"{HOME}/datasets/train"
 
@@ -53,6 +52,8 @@ with depthai.Device(pipeline) as device:
     frame = None
 
     # Main host-side application loop
+
+    print("Press 'b' to take background image")
     while True:
         # we try to fetch the data from nn/rgb queues. tryGet will return either the data packet or None if there isn't any
         in_rgb = q_rgb.tryGet()
@@ -65,11 +66,13 @@ with depthai.Device(pipeline) as device:
             cv2.imshow("preview", frame)
             frame_gray = cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY) 
             cv2.imshow("greyscale", frame_gray)
+            
 
         if cv2.waitKey(3) == ord('b'):
             # Train background with first frame
             background = frame_gray
             cv2.imshow('Background', background)
+            print("Background updated - press 'w' to capture image")
 
         if background is not None:
             diff = cv2.absdiff(background, frame_gray)
@@ -81,13 +84,14 @@ with depthai.Device(pipeline) as device:
            
             # at any time, you can press "w" to capture an image 
         if cv2.waitKey(2) == ord('w'):
-            cls = input("Wybierz klasę obiektu:\n")
+            cls = input("Choose type of an object, press 0-4 and ENTER:\n")
             center_x, center_y, yolo_w, yolo_h = make_yolo_label(x, y, w, h, SIZE)
             name=uuid.uuid4().hex
             cv2.imwrite(os.path.join(PATH, "images/" , name+'.jpg'), frame)
             f= open(os.path.join(PATH, "labels/" , name+'.txt'),"w")
             f.write("{} {} {} {} {}".format(str(cls), str(center_x), str(center_y), str(yolo_w), str(yolo_h)))
             f.close
+            print("File saved - press 'w' for another image")
 
         # at any time, you can press "q" and exit the main loop, therefore exiting the program itself
         if cv2.waitKey(1) == ord('q'):
